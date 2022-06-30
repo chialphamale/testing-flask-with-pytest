@@ -13,6 +13,7 @@ def test_get_all_books():
     response = app.test_client().get('/bookapi/books')
 
     res = json.loads(response.data.decode('utf-8')).get("Books")
+    print(res)
     assert type(res[0]) is dict
     assert type(res[1]) is dict
     assert res[0]['author'] == 'Havard'
