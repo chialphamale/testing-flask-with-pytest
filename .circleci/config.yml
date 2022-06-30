@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   python: circleci/python@2.0.3
+  slack: circleci/slack@3.4.2
 jobs:
   build-and-test:
     docker:
@@ -16,3 +17,11 @@ workflows:
   sample:
     jobs:
       - build-and-test
+      - hold:
+          type: approval
+          requires:
+            - build-and-test
+            - slack/approval-notification:
+                requires:
+                  - build-and-test
+                message: testing-flask Pending approval to deploy
