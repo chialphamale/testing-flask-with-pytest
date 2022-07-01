@@ -24,4 +24,4 @@ workflows:
       - slack/approval-notification:
           requires:
             - build-and-test
-          message: testing-flask Pending approval to deploy
+          message: testing-flask Pending approval to test
