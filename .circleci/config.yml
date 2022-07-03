@@ -15,7 +15,7 @@ jobs:
           command: python -m pytest
       - slack/notify:
           event: pass
-          message: "test successful"
+          template: basic_success_1
 
 workflows:
   sample:
