@@ -19,10 +19,10 @@ workflows:
   sample:
     jobs:
       - build-and-test
-          - hold:
-          type: approval
-          requires:
-            - build-and-test
+      - hold:
+      type: approval
+      requires:
+        - build-and-test
       - slack/approval-notification:
           requires:
             - build-and-test
