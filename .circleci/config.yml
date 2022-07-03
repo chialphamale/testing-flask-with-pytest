@@ -1,8 +1,22 @@
 version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/python:3.10.4
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Run tests
+          command: python -m pytest
 workflows:
-  your-workflow:
+  sample:
     jobs:
+      - build-and-test
       - slack/approval-notification:
-          message: Pending approval
+          requires:
+            - build-and-test
+          message: testing-flask Pending approval to test
