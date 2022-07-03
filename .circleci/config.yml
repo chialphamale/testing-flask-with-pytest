@@ -26,4 +26,7 @@ workflows:
             - build-and-test
             - slack/on-hold
           type: approval
+      - slack/notify:
+          event: pass
+          message: "test successful"
 
