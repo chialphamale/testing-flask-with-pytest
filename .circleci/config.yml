@@ -14,16 +14,18 @@ jobs:
           name: Run tests
           command: python -m pytest
 
+
 workflows:
   sample:
     jobs:
       - build-and-test
-      - hold:
+      - slack/on-hold:
+          requires:
+            - build-and-test
+      - pause_workflow:
+          requires:
+            - build-and-test
+            - slack/on-hold
           type: approval
-          requires:
-            - build-and-test
-      - slack/approval-notification:
-          requires:
-            - build-and-test
-          message: testing-flask Pending approval to deploy
+
 
