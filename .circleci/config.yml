@@ -13,14 +13,12 @@ jobs:
       - run:
           name: Run tests
           command: python -m pytest
-      - slack/notify:
-          event: fail
-          template: basic_fail_1
-      - slack/notify:
-                event: pass
-                template: success_tagged_deploy_1workflows
+
 workflows:
   sample:
     jobs:
       - build-and-test
+      - slack/on-hold:
+          requires:
+            - build-and-test
 
