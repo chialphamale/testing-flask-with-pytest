@@ -13,27 +13,14 @@ jobs:
       - run:
           name: Run tests
           command: python -m pytest
-  notify:
-    docker:
-      - image: 'cimg/base:stable'
-    steps:
       - slack/notify:
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "*This is a text notification*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
-          event: always
+          event: fail
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+
+
 
 
 workflows:
@@ -48,6 +35,5 @@ workflows:
             - build-and-test
             - slack/on-hold
           type: approval
-      - notify
 
 
