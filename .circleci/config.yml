@@ -13,6 +13,9 @@ jobs:
       - run:
           name: Run tests
           command: python -m pytest
+      - slack/notify:
+          event: pass
+          message: "test successful"
 
 workflows:
   sample:
@@ -26,7 +29,5 @@ workflows:
             - build-and-test
             - slack/on-hold
           type: approval
-      - slack/notify:
-          event: pass
-          message: "test successful"
+
 
