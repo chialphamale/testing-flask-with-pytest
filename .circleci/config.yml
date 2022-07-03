@@ -21,4 +21,9 @@ workflows:
       - slack/on-hold:
           requires:
             - build-and-test
+      - pause_workflow:
+          requires:
+            - test
+            - slack/on-hold
+          type: approval
 
