@@ -19,6 +19,7 @@ jobs:
             python -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
+
   deploy:
     machine:
       enabled: true
@@ -29,7 +30,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh ubuntu@sgh-jarvis-empower.com "cd test/testing-flask-with-pytest && FLASK_APP=api.py flask run"
+            ssh ubuntu@sgh-jarvis-empower.com "cd test/testing-flask-with-pytest && python -m venv venv && source venv/bin/activate && pip install -r requirements.txt && FLASK_APP=api.py flask run"
       - slack/notify:
           color: '#42e2f4'
           message: testing-flask deploy to server completed.
