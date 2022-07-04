@@ -30,7 +30,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh ubuntu@sgh-jarvis-empower.com "touch newfile"
+            ssh ubuntu@sgh-jarvis-empower.com "git clone git@github.com:chialphamale/testing-flask-with-pytest.git"
       - slack/notify:
           color: '#42e2f4'
           message: testing-flask deploy to server completed.
