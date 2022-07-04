@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh ubuntu@sgh-jarvis-empower.com "cd test/testing-flask-with-pytest && git pull"
+            ssh ubuntu@sgh-jarvis-empower.com "cd test/testing-flask-with-pytest"
             ssh ubuntu@sgh-jarvis-empower.com "sudo FLASK_APP=api.py flask run"
       - slack/notify:
           color: '#42e2f4'
